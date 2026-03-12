@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  dyad-app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - AI_PROVIDER=ollama
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # لتمكين الحاوية من رؤية Ollama على جهازك
+    restart: always 
